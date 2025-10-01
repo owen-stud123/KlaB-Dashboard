@@ -1,73 +1,122 @@
-# React + TypeScript + Vite
+# KlaB Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern admin login dashboard built with React, TypeScript, and Vite. This application provides a clean and responsive login interface for administrative access.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔐 Admin login form with email and password validation
+- 📱 Responsive design that works on desktop and mobile
+- 🎨 Modern UI with clean styling and hover effects
+- ⚡ Fast development with Vite and Hot Module Replacement (HMR)
+- 🛠️ TypeScript support for better development experience
+- 📝 ESLint configuration for code quality
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** - Latest React with modern features
+- **TypeScript** - Type-safe JavaScript
+- **Vite 7** - Fast build tool and development server
+- **CSS3** - Modern styling with flexbox and grid
+- **ESLint** - Code linting and formatting
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js (v16 or higher)
+- npm or yarn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone the repository
+2. Navigate to the project directory:
+   ```bash
+   cd "KlaB Dashboard"
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Development
+
+Start the development server:
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The application will be available at `http://localhost:5173`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Build
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Create a production build:
+```bash
+npm run build
 ```
+
+### Preview
+
+Preview the production build:
+```bash
+npm run preview
+```
+
+## Project Structure
+
+```
+src/
+├── App.tsx          # Main application component with LoginForm
+├── App.css          # Component-specific styles
+├── index.css        # Global styles and layout
+├── main.tsx         # Application entry point
+└── assets/          # Static assets
+```
+
+## Features Overview
+
+### Login Form
+- Email address input with validation
+- Password input with secure field
+- "Forgot password" link
+- Responsive login button with hover effects
+
+### Responsive Design
+- Mobile-first approach
+- Centered layout with card-style container
+- Adaptive sizing for different screen sizes
+
+## Development Features
+
+This project uses Vite with the following plugins:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) - Uses Babel for Fast Refresh
+- TypeScript support with strict type checking
+- ESLint for code quality and consistency
+
+## Customization
+
+### Styling
+- Modify `src/index.css` for global styles and layout
+- Update `src/App.css` for component-specific styling
+- Colors, fonts, and spacing can be easily customized
+
+### Functionality
+- Add form validation by implementing state management
+- Connect to authentication API endpoints
+- Add routing for post-login navigation
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+Built with ❤️ using React and TypeScript
