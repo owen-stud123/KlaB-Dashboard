@@ -1,10 +1,13 @@
+/* Global root */
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: sans-serif;
 }
 
+/* Logo styles */
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -33,11 +36,240 @@
   }
 }
 
+/* Card */
 .card {
   padding: 2em;
 }
 
+/* Read the docs link */
 .read-the-docs {
   color: #888;
 }
 
+/* ===========================
+   App/Login Form Styles
+   =========================== */
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background: #f0f4ff;
+  transition: background 0.5s ease;
+}
+
+.app {
+  background: #ffffff;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.app:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+  margin-bottom: 1rem;
+  color: #333;
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #646cff, #61dafb);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+h1:hover::after {
+  width: 100px;
+}
+
+.input-wrapper h2 {
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.demo-credentials {
+  background: #f8f9fa;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 1rem;
+  border-left: 3px solid #646cff;
+}
+
+.error-message {
+  background: #fee;
+  color: #c33;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  border: 1px solid #fcc;
+  font-size: 0.9rem;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  border-color: #646cff;
+  box-shadow: 0 0 5px #646cff55;
+  outline: none;
+}
+
+.form-group input.error {
+  border-color: #e74c3c;
+  box-shadow: 0 0 5px #e74c3c33;
+}
+
+.form-group input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.field-error {
+  color: #e74c3c;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #646cff;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 0.5rem;
+}
+
+.login-button:hover:not(:disabled) {
+  background-color: #5156e0;
+  transform: scale(1.03);
+}
+
+.login-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.logout-button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #ff6b6b;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.logout-button:hover {
+  background-color: #e05555;
+  transform: scale(1.05);
+}
+
+.forgot-password {
+  display: block;
+  margin: 0.5rem 0 1rem;
+  color: #646cff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: right;
+  width: 100%;
+}
+
+.forgot-password:hover {
+  color: #5156e0;
+  text-decoration: underline;
+}
+
+/* ===========================
+   Authenticated View
+   =========================== */
+.app p {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #333;
+  animation: fadeIn 0.8s ease;
+}
+
+.app button {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #ff6b6b;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.app button:hover {
+  background-color: #e05555;
+  transform: scale(1.05);
+}
+
+/* ===========================
+   Animations
+   =========================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
