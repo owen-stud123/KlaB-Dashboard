@@ -35,33 +35,51 @@ const initialState: AuthState = {
   user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!) : null,
 };
 
-// Async thunk for login with real API call
+// Async thunk for login (Demo Mode - replace with real API when backend is ready)
 export const loginAsync = createAsyncThunk(
   'auth/loginAsync',
   async (credentials: LoginCredentials, { rejectWithValue }) => {
     try {
-      // Real API call to your authentication endpoint
+      // Simulate API call delay for realistic demo
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Demo authentication (replace with real API call when backend is ready)
+      if (credentials.email === 'admin@klab.com' && credentials.password === 'password123') {
+        const token = `demo-jwt-token-${Date.now()}`;
+        const user = { 
+          id: 'demo-user-123',
+          email: credentials.email,
+          name: 'Admin User',
+          role: 'admin'
+        };
+        
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
+        
+        return { token, user };
+      } else {
+        throw new Error('Invalid email or password');
+      }
+
+      /* 
+      // Real API implementation :
       const response = await fetchWithTimeout(getApiUrl('/api/auth/login'), {
         method: 'POST',
         headers: getAuthHeaders(),
         body: JSON.stringify(credentials),
       });
 
-      // Check if the response is successful
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
       }
 
-      // Parse the response data
       const data = await response.json();
       
-      // Validate response structure
       if (!data.token || !data.user) {
         throw new Error('Invalid response format from server');
       }
 
-      // Store token and user data in localStorage
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
 
@@ -69,6 +87,7 @@ export const loginAsync = createAsyncThunk(
         token: data.token, 
         user: data.user 
       };
+      */
     } catch (error) {
       // Handle different types of errors
       if (error instanceof TypeError && error.message.includes('fetch')) {
@@ -142,11 +161,14 @@ export const validateToken = createAsyncThunk(
   }
 );
 
+//-------------------------
+// eliminating boilerplate
+//-------------------------
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    // Synchronous logout (for immediate logout without API call)
     logoutSync: (state) => {
       state.token = null;
       state.isAuthenticated = false;
@@ -166,30 +188,37 @@ const authSlice = createSlice({
       state.error = null;
     },
   },
+
+
+  //--------------------------------
+  //extraReducers handling
+  //--------------------------------
+
+
   extraReducers: (builder) => {
     builder
       // Login cases
       .addCase(loginAsync.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = true;            //loading
         state.error = null;
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.token = action.payload.token;
         state.user = action.payload.user;
-        state.isAuthenticated = true;
+        state.isAuthenticated = true;      //success
         state.error = null;
       })
       .addCase(loginAsync.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
-        state.isAuthenticated = false;
+        state.isAuthenticated = false;     //error
         state.token = null;
         state.user = null;
       })
       // Logout cases
       .addCase(logoutAsync.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = true;                 
       })
       .addCase(logoutAsync.fulfilled, (state) => {
         state.isLoading = false;
